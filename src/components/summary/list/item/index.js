@@ -18,7 +18,7 @@ function Country() {
 					</div>
 				</div>
 			</div>
-			<div>
+			<div className={styles.country__right}>
 				<h4>Today</h4>
 				<div>
 					<span>1</span>

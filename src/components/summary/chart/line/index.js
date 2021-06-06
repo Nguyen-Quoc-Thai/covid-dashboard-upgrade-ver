@@ -24,7 +24,6 @@ const generateOptions = (data) => {
 				},
 			},
 		},
-		colors: ['#F3585B', 'blue'],
 		chart: {
 			backgroundColor: '#303949',
 			polar: true,
@@ -62,11 +61,19 @@ const generateOptions = (data) => {
 				name: 'Infections',
 				data: data.map((item) => item),
 				legendIndex: 1,
+				color: '#2eafdb',
 			},
 			{
-				name: 'Infections2',
+				name: 'Deads',
 				data: data.map((item) => item + 1),
 				legendIndex: 2,
+				color: '#fd5e5f',
+			},
+			{
+				name: 'Recovered',
+				data: data.map((item) => item + 2),
+				legendIndex: 3,
+				color: '#26c26c',
 			},
 		],
 	};
