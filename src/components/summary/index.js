@@ -7,13 +7,13 @@ import Annotate from './annotate';
 function Summary(props) {
 	return (
 		<>
-			<Grid item xs={3} spacing={2}>
+			<Grid item xs={8} sm={3} spacing={2}>
 				<div>
 					<Annotate {...props} />
 				</div>
 				<ListCountry />
 			</Grid>
-			<Grid item xs={9} spacing={2}>
+			<Grid item sm={9} xs={8} spacing={2}>
 				<Chart />
 			</Grid>
 		</>
