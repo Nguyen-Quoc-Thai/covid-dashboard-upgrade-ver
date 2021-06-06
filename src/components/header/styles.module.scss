@@ -1,0 +1,98 @@
+@import './../../utils/scss/mixins.scss';
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 1rem 7.5rem;
+	background-color: $component-background;
+	z-index: 1000;
+
+	&__container {
+		@include flexbox(space-between, center);
+	}
+
+	&__left {
+		width: 50%;
+		text-align: left;
+
+		&__link {
+			@include flexbox(flex-start, center);
+			text-decoration: none;
+		}
+
+		&__link:hover,
+		&__link:visited,
+		&__link:focus {
+			text-decoration: none;
+		}
+
+		&__logo {
+			width: 3rem;
+			height: 100%;
+			margin-right: 1.3rem;
+		}
+
+		&__title {
+			color: $text-color;
+			cursor: pointer;
+			user-select: none;
+		}
+	}
+	&__thumbnail {
+		width: 2rem;
+		height: 2rem;
+		margin-right: 0.5rem;
+		img {
+			width: 100%;
+		}
+	}
+
+	&__menus {
+		ul {
+			@include flexbox();
+			list-style-type: none;
+
+			li {
+				margin-right: 1rem;
+				a,
+				button {
+					color: $text-color;
+					text-decoration: none;
+					padding: 0.5rem;
+					&:hover {
+						text-decoration: none;
+					}
+				}
+
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+		&--active {
+			border-bottom: 2px solid $text-color;
+		}
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.header {
+		&__left {
+			width: 30%;
+		}
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.header {
+		padding: 0.5rem 2rem;
+		&__left {
+			width: 50%;
+			&__title {
+				display: none;
+			}
+		}
+	}
+}

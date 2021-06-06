@@ -1,0 +1,23 @@
+@import './../../utils/scss/mixins.scss';
+
+.card {
+	background-color: $component-background;
+	padding: 1.2rem 1rem;
+	color: $text-color;
+	align-items: center;
+
+	&__title {
+		font-size: 1.4rem;
+	}
+
+	&__statistic {
+		@include flexbox(space-between, center);
+		margin-bottom: 1rem;
+		font-size: 0.7rem;
+	}
+
+	&__line {
+		height: 2px;
+		border: 1px solid white;
+	}
+}

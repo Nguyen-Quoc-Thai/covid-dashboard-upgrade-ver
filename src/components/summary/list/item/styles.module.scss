@@ -1,0 +1,37 @@
+@import './../../../../utils/scss/mixins.scss';
+
+.country {
+	@include flexbox(space-between, center);
+	height: 3.5rem;
+	padding: 0 10px;
+	color: $text-color;
+	background-color: $component-background;
+
+	&:hover {
+		cursor: pointer;
+		transform: scale(0.98);
+		transition: all 0.5s;
+		border: 1px solid white;
+	}
+
+	&__left {
+		@include flexbox(flex-start, center);
+		width: 60%;
+
+		img {
+			max-width: 2.5rem;
+			margin-right: 0.5rem;
+		}
+
+		div {
+			span {
+				margin-right: 1rem;
+				font-size: 12px;
+			}
+		}
+	}
+
+	&__right {
+		width: 30%;
+	}
+}

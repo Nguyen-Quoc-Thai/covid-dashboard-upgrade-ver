@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { renderRoutes, routes } from './configs/routes';
 import Header from './components/header';
-// import MessageBubbleContainer from './container/message/bubbleContainer';
 import Loading from './components/loading/circular';
 
 function App() {
@@ -12,7 +11,9 @@ function App() {
 			<BrowserRouter>
 				<Suspense fallback={<Loading />}>
 					<Header />
-					<main className='App__main'>{renderRoutes(routes)}</main>
+					<main className='App__main' style={{ marginTop: '6rem' }}>
+						{renderRoutes(routes)}
+					</main>
 				</Suspense>
 			</BrowserRouter>
 		</div>

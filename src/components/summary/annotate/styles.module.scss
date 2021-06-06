@@ -1,0 +1,28 @@
+@import './../../../utils/scss/mixins.scss';
+
+.annotate {
+	padding: 8px;
+	border: 1px solid black;
+	border-radius: 4px 4px 0 0;
+
+	&__title {
+		width: 35%;
+		margin-right: 1.5rem;
+		font-size: 0.7rem;
+	}
+
+	&__block {
+		width: 60%;
+		height: 1rem;
+		border: 1px solid rgb(204, 179, 179);
+	}
+
+	&__flex {
+		@include flexbox(flex-start, center);
+		margin-bottom: 0.5rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
