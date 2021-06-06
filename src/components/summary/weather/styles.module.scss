@@ -1,0 +1,25 @@
+@import './../../../utils/scss/mixins.scss';
+
+.weather {
+	@include flexbox(center, center);
+	padding: 0.5rem 1rem;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 0 0 4px 4px;
+
+	&__left {
+		justify-content: center;
+		width: 50%;
+
+		img {
+			margin: auto;
+			display: block;
+			max-width: 3rem;
+			max-height: 2.5rem;
+		}
+	}
+
+	&__right {
+		width: 50%;
+	}
+}

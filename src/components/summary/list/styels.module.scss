@@ -1,0 +1,6 @@
+@import './../../../utils/scss/mixins.scss';
+
+.list {
+	max-height: 15rem;
+	overflow-y: scroll;
+}

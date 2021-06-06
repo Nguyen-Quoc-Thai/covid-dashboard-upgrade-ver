@@ -3,7 +3,6 @@ import HightCharts from 'highcharts';
 import HightReactOfficial from 'highcharts-react-official';
 
 const generateOptions = (data) => {
-	// const categories = data.map((item) => moment(item.Date).format('DD/MM/YYYY'));
 	const categories = [1, 2, 3, 4, 5];
 
 	return {
