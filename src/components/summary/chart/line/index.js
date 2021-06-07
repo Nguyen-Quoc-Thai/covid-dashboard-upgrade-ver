@@ -1,6 +1,6 @@
 import React from 'react';
 import HightCharts from 'highcharts';
-import HightReactOfficial from 'highcharts-react-official';
+import HightChartsReactOfficial from 'highcharts-react-official';
 
 const generateOptions = (data) => {
 	const categories = [1, 2, 3, 4, 5];
@@ -82,7 +82,7 @@ const generateOptions = (data) => {
 function LineChart() {
 	return (
 		<>
-			<HightReactOfficial
+			<HightChartsReactOfficial
 				hightCharts={HightCharts}
 				options={generateOptions([1, 2, 3, 4, 9])}
 			/>
