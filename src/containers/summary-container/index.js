@@ -10,7 +10,7 @@ function SummaryContainer() {
 			<Grid item sm={3} xs={11} spacing={2}>
 				<SummaryLeftContainer groupCard={groupCard} />
 			</Grid>
-			<Grid item sm={9} xs={11} spacing={2}>
+			<Grid container item sm={9} xs={11} spacing={2}>
 				<SummaryRightContainer />
 			</Grid>
 		</>
