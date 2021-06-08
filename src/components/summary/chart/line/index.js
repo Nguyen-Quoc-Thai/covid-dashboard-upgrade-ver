@@ -90,4 +90,4 @@ function LineChart() {
 	);
 }
 
-export default LineChart;
+export default React.memo(LineChart);

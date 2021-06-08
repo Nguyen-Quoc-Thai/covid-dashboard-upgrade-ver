@@ -115,4 +115,4 @@ function Map(props) {
 	);
 }
 
-export default Map;
+export default React.memo(Map);
