@@ -4,43 +4,58 @@ import { getData } from '../../apis';
 import Card from './../../components/card';
 import { groupCard } from './../../constants/share';
 
-const renderGroupCard = (groupCard) => {
-	return groupCard.map((card) => {
-		const { key, name, color } = card;
-		return (
-			<Grid key={key} item sm={4} xs={11}>
-				<Card name={name} color={color} />
-			</Grid>
-		);
-	});
+const destructData = (globalData) => {
+	return {
+		infections: {
+			cases: globalData.cases,
+			todayCases: globalData.todayCases,
+		},
+		deaths: {
+			cases: globalData.deaths,
+			todayCases: globalData.todayDeaths,
+		},
+		recovered: {
+			cases: globalData.recovered,
+			todayCases: globalData.todayRecovered,
+		},
+	};
 };
-
-const destructData = (data) =>
-	({
-		updated,
-		cases,
-		todayCases,
-		deaths,
-		todayDeaths,
-		recovered,
-		todayRecovered,
-		population,
-		affectedCountries,
-	} = data);
 
 function CardContainer() {
 	const [globalData, setGlobalData] = useState({});
-	console.log({ globalData });
+	const [infections, deads, recovered] = groupCard;
+
 	useEffect(async () => {
 		const apiUrl = 'https://corona.lmao.ninja/v2/all';
 		const { data } = await getData(apiUrl);
-		setGlobalData(data);
-
-		// Destruct data
 		setGlobalData(destructData(data));
 	}, []);
 
-	return <>{renderGroupCard(groupCard)}</>;
+	return (
+		<>
+			<Grid key={1} item sm={4} xs={11}>
+				<Card
+					name={infections.name}
+					color={infections.color}
+					data={globalData.infections || {}}
+				/>
+			</Grid>
+			<Grid key={2} item sm={4} xs={11}>
+				<Card
+					name={deads.name}
+					color={deads.color}
+					data={globalData.deaths || {}}
+				/>
+			</Grid>
+			<Grid key={3} item sm={4} xs={11}>
+				<Card
+					name={recovered.name}
+					color={recovered.color}
+					data={globalData.recovered || {}}
+				/>
+			</Grid>
+		</>
+	);
 }
 
 export default CardContainer;

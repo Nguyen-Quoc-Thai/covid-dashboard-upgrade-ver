@@ -4,7 +4,12 @@ import styles from './styles.module.scss';
 import CountUp from 'react-countup';
 
 function Card(props) {
-	const { name, color } = props;
+	const {
+		name,
+		color,
+		data: { cases, todayCases },
+	} = props;
+	console.log({ cases, todayCases });
 
 	return (
 		<>
@@ -13,10 +18,10 @@ function Card(props) {
 					{name}
 				</h3>
 				<h2>
-					<CountUp end={86122984} duration={2} separator=' ' />
+					<CountUp end={cases} duration={2} separator=' ' />
 				</h2>
 				<div className={styles.card__statistic}>
-					<div>From:</div>
+					<div>Today: {todayCases} cases</div>
 					<div>? percent</div>
 				</div>
 				<div
