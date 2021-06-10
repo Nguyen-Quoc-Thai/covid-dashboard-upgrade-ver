@@ -9,7 +9,6 @@ function Card(props) {
 		color,
 		data: { cases, todayCases },
 	} = props;
-	console.log({ cases, todayCases });
 
 	return (
 		<>
@@ -18,7 +17,7 @@ function Card(props) {
 					{name}
 				</h3>
 				<h2>
-					<CountUp end={cases} duration={2} separator=' ' />
+					<CountUp end={cases || 0} duration={2} separator=' ' />
 				</h2>
 				<div className={styles.card__statistic}>
 					<div>Today: {todayCases} cases</div>

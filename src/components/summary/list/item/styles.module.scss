@@ -31,7 +31,17 @@
 		div {
 			span {
 				margin-right: 0.5rem;
-				font-size: 12px;
+				font-size: 9.5px;
+
+				&:nth-child(1) {
+					color: $inflection-color;
+				}
+				&:nth-child(2) {
+					color: $dead-color;
+				}
+				&:nth-child(3) {
+					color: $recovery-color;
+				}
 			}
 		}
 	}
@@ -42,7 +52,17 @@
 		div {
 			span {
 				margin-right: 0.5rem;
-				font-size: 12px;
+				font-size: 9.5px;
+
+				&:nth-child(1) {
+					color: $inflection-color;
+				}
+				&:nth-child(2) {
+					color: $dead-color;
+				}
+				&:nth-child(3) {
+					color: $recovery-color;
+				}
 			}
 		}
 	}
