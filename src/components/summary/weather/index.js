@@ -1,50 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './styles.module.scss';
-import { getWeather } from './../../../apis/weather';
-import * as CONST_VAL from './../../../constants/math';
 
-function Weather() {
-	const [location, setLocation] = useState({});
-	const [weather, setWeather] = useState({});
-
-	useEffect(() => {
-		const isGeolocationAllowed = () => {
-			if ('geolocation' in navigator) {
-				navigator.geolocation.getCurrentPosition((position) => {
-					const lat = position.coords.latitude;
-					const long = position.coords.longitude;
-
-					return { lat, long };
-				});
-			}
-		};
-
-		const data = isGeolocationAllowed();
-		if (data) {
-			const { lat, long } = data;
-			lat && long && setLocation({ lat, long });
-		}
-	}, []);
-
-	useEffect(() => {
-		const { KELVIN, API_KEY } = CONST_VAL;
-		const { lat, long } = location;
-
-		if (lat && long) {
-			const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}`;
-			const data = getWeather(apiUrl);
-
-			// Destruct data
-			const temperature = Math.floor(data.main.temp - KELVIN);
-			const { description, icon: iconId } = data.weather[0];
-			const { name: city } = data.name;
-			const { country } = data.sys;
-
-			setWeather({ temperature, description, iconId, city, country });
-		}
-	}, [location]);
-
-	const { temperature, description, iconId, city, country } = weather;
+function Weather(props) {
+	const { temperature, description, iconId, city, country } = props;
 
 	return (
 		<div className={styles.weather}>
@@ -57,6 +15,7 @@ function Weather() {
 							src={
 								iconId
 									? require(`./../../../resources/weather-icons/${iconId}.png`)
+											.default
 									: ''
 							}
 							alt='Home page'

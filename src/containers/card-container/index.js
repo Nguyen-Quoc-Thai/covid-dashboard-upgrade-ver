@@ -1,5 +1,6 @@
 import { Grid } from '@material-ui/core';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getData } from '../../apis';
 import Card from './../../components/card';
 import { groupCard } from './../../constants/share';
 
@@ -14,7 +15,31 @@ const renderGroupCard = (groupCard) => {
 	});
 };
 
+const destructData = (data) =>
+	({
+		updated,
+		cases,
+		todayCases,
+		deaths,
+		todayDeaths,
+		recovered,
+		todayRecovered,
+		population,
+		affectedCountries,
+	} = data);
+
 function CardContainer() {
+	const [globalData, setGlobalData] = useState({});
+	console.log({ globalData });
+	useEffect(async () => {
+		const apiUrl = 'https://corona.lmao.ninja/v2/all';
+		const { data } = await getData(apiUrl);
+		setGlobalData(data);
+
+		// Destruct data
+		setGlobalData(destructData(data));
+	}, []);
+
 	return <>{renderGroupCard(groupCard)}</>;
 }
 

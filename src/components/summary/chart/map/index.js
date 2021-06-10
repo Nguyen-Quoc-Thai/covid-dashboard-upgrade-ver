@@ -69,7 +69,6 @@ function Map(props) {
 
 	useEffect(() => {
 		if (mapData && Object.keys(mapData).length) {
-			console.log({ mapData });
 			const data = destructData(mapData);
 
 			setOptions(() => ({
