@@ -7,7 +7,7 @@ function Chart(props) {
 	const [mapData, setMapData] = useState({});
 
 	useEffect(() => {
-		import('@highcharts/map-collection/countries/vn/vn-all.geo.json')
+		import('@highcharts/map-collection/custom/world.geo.json')
 			.then((res) => setMapData(res))
 			.catch((error) => console.log(error));
 	}, []);
@@ -18,7 +18,7 @@ function Chart(props) {
 				<LineChart {...props} />
 			</Grid>
 			<Grid item xs={11} sm={4}>
-				<Map mapData={mapData} />
+				<Map mapData={mapData} {...props} />
 			</Grid>
 		</>
 	);

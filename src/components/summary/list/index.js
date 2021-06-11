@@ -5,13 +5,12 @@ import Spinner from './../../loading';
 
 const renderListCountry = (listCountry, handleClickCountry) => {
 	return listCountry.map((country, index) => (
-		<Country key={index} data={country} onClick={(e) => console.log(e)} />
+		<Country key={index} data={country} onClick={(e) => {}} />
 	));
 };
 
 function ListCountry(props) {
 	const { data: listCountry, handleClickCountry } = props;
-	console.log(handleClickCountry);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {

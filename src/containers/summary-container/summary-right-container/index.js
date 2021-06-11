@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getData } from '../../../apis';
 import Chart from '../../../components/summary/chart';
 
-function SummaryRightContainer() {
+function SummaryRightContainer(props) {
 	const [lineChartData, setLineChartData] = useState([]);
 
 	useEffect(async () => {
@@ -13,7 +13,7 @@ function SummaryRightContainer() {
 
 	return (
 		<>
-			<Chart lineChartData={lineChartData} />
+			<Chart lineChartData={lineChartData} {...props} />
 		</>
 	);
 }

@@ -6,6 +6,7 @@ import HightChartsMap from 'highcharts/modules/map';
 HightChartsMap(HightCharts);
 
 const destructData = (mapData) => {
+	console.log({ mapData });
 	return mapData.features.map((feature, index) => {
 		return {
 			key: feature.properties['hc-key'],
@@ -17,15 +18,13 @@ const destructData = (mapData) => {
 const initOptions = {
 	chart: {
 		height: '400',
+		backgroundColor: '#303949',
 	},
 	title: {
 		text: null,
 		style: {
 			color: 'white',
 		},
-	},
-	chart: {
-		backgroundColor: '#303949',
 	},
 	mapNavigation: {
 		enabled: true,
@@ -62,12 +61,13 @@ const initOptions = {
 };
 
 function Map(props) {
-	const { mapData } = props;
+	const { mapData, countriesData } = props;
 	const [options, setOptions] = useState({});
 	const [mapLoaded, setMapLoaded] = useState(false);
 	const mapRef = useRef(null);
 
 	useEffect(() => {
+		console.log({ countriesData });
 		if (mapData && Object.keys(mapData).length) {
 			const data = destructData(mapData);
 
@@ -90,7 +90,7 @@ function Map(props) {
 
 			if (!mapLoaded) setMapLoaded(true);
 		}
-	}, [mapData, mapLoaded]);
+	}, [mapData, mapLoaded, countriesData]);
 
 	useEffect(() => {
 		if (mapRef && mapRef.current) {

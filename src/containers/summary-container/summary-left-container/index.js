@@ -56,6 +56,8 @@ const countriesDestructData = (data) => {
 };
 
 function SummaryLeftContainer(props) {
+	const { getListCountriesSuccess } = props;
+
 	const [location, setLocation] = useState({});
 	const [weather, setWeather] = useState({});
 	const [countries, setCountries] = useState([]);
@@ -88,6 +90,7 @@ function SummaryLeftContainer(props) {
 		const apiUrl = 'https://corona.lmao.ninja/v2/countries?sort=cases';
 		const { data } = await getData(apiUrl);
 		data && setCountries(countriesDestructData(data));
+		getListCountriesSuccess(data);
 	}, []);
 
 	return (
