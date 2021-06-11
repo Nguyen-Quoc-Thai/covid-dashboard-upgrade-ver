@@ -1,9 +1,14 @@
-import React from 'react';
-import HightCharts from 'highcharts';
-import HightChartsReactOfficial from 'highcharts-react-official';
+import React, { useState, useEffect } from 'react';
+import HighCharts from 'highcharts';
+import HighChartsReactOfficial from 'highcharts-react-official';
+import Spinner from './../../../loading';
 
 const generateOptions = (data) => {
-	const categories = [1, 2, 3, 4, 5];
+	const categories = Object.keys(data);
+
+	const infections = categories.map((day) => data[day].confirmed);
+	const deaths = categories.map((day) => data[day].deaths);
+	const recovered = categories.map((day) => data[day].recovered);
 
 	return {
 		chart: {
@@ -13,6 +18,19 @@ const generateOptions = (data) => {
 			text: 'Infections',
 			style: {
 				color: 'white',
+			},
+		},
+		legend: {
+			title: {
+				style: {
+					color:
+						(HighCharts.defaultOptions &&
+							HighCharts.defaultOptions.legend &&
+							HighCharts.defaultOptions.legend.title &&
+							HighCharts.defaultOptions.legend.title.style &&
+							HighCharts.defaultOptions.legend.title.style.color) ||
+						'white',
+				},
 			},
 		},
 		xAxis: {
@@ -59,19 +77,19 @@ const generateOptions = (data) => {
 		series: [
 			{
 				name: 'Infections',
-				data: data.map((item) => item),
+				data: infections,
 				legendIndex: 1,
 				color: '#2eafdb',
 			},
 			{
 				name: 'Deads',
-				data: data.map((item) => item + 1),
+				data: deaths,
 				legendIndex: 2,
 				color: '#fd5e5f',
 			},
 			{
 				name: 'Recovered',
-				data: data.map((item) => item + 2),
+				data: recovered,
 				legendIndex: 3,
 				color: '#26c26c',
 			},
@@ -79,13 +97,28 @@ const generateOptions = (data) => {
 	};
 };
 
-function LineChart() {
+function LineChart(props) {
+	const { lineChartData } = props;
+	const [loading, setLoading] = useState(true);
+	const [options, setOptions] = useState({});
+
+	useEffect(() => {
+		setOptions(generateOptions(lineChartData || {}));
+	}, [lineChartData]);
+
+	useEffect(() => {
+		if (options?.series?.[0]?.data?.length && loading) {
+			setLoading(false);
+		}
+	}, [options]);
+
 	return (
 		<>
-			<HightChartsReactOfficial
-				hightCharts={HightCharts}
-				options={generateOptions([1, 2, 3, 4, 9])}
-			/>
+			{loading ? (
+				<Spinner />
+			) : (
+				<HighChartsReactOfficial highCharts={HighCharts} options={options} />
+			)}
 		</>
 	);
 }

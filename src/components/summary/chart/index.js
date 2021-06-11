@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import LineChart from './line';
 import Map from './map';
 
-function Chart() {
+function Chart(props) {
 	const [mapData, setMapData] = useState({});
 
 	useEffect(() => {
@@ -15,7 +15,7 @@ function Chart() {
 	return (
 		<>
 			<Grid item xs={11} sm={8}>
-				<LineChart />
+				<LineChart {...props} />
 			</Grid>
 			<Grid item xs={11} sm={4}>
 				<Map mapData={mapData} />
