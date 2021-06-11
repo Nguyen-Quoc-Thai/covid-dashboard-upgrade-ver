@@ -14,10 +14,10 @@ function Chart() {
 
 	return (
 		<>
-			<Grid item xs={11} sm={8} spacing={2}>
+			<Grid item xs={11} sm={8}>
 				<LineChart />
 			</Grid>
-			<Grid item xs={11} sm={4} spacing={2}>
+			<Grid item xs={11} sm={4}>
 				<Map mapData={mapData} />
 			</Grid>
 		</>

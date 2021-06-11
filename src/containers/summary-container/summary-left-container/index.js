@@ -93,7 +93,7 @@ function SummaryLeftContainer(props) {
 	return (
 		<>
 			<Annotate {...props} />
-			<ListCountry data={countries} />
+			<ListCountry {...props} data={countries} />
 			<Weather data={weather} />
 		</>
 	);

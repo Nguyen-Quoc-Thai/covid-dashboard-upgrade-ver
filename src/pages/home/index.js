@@ -3,6 +3,11 @@ import React from 'react';
 import CardContainer from './../../containers/card-container';
 import SelectOptionContainer from './../../containers/select-option-container';
 import SummaryContainer from '../../containers/summary-container';
+import { groupCard } from '../../constants/share';
+
+const handleClickCountry = (country) => {
+	console.log(country);
+};
 
 function Home() {
 	return (
@@ -34,7 +39,11 @@ function Home() {
 				style={{ marginTop: '1rem' }}
 				justify='center'
 				spacing={2}>
-				<SummaryContainer xs={11} groupCard={[]} />
+				<SummaryContainer
+					xs={11}
+					groupCard={groupCard}
+					handleClickCountry={handleClickCountry}
+				/>
 			</Grid>
 		</Container>
 	);
