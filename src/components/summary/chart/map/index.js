@@ -105,6 +105,7 @@ function Map(props) {
 			<HightChartsReactOfficial
 				hightCharts={HightCharts}
 				options={options}
+				allowChartUpdate={true}
 				constructorType='mapChart'
 				ref={mapRef}
 			/>

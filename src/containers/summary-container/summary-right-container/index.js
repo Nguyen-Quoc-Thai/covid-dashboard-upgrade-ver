@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { getData } from '../../../apis';
 import Chart from '../../../components/summary/chart';
+import _ from 'lodash';
+
+const sliceResult = (objData, timeOption) => {
+	if (objData) {
+		const keys = Object.keys(objData);
+		return _.pick(objData, ...keys.slice(timeOption * -1).map((key) => key));
+	}
+};
 
 function SummaryRightContainer(props) {
-	const { selectedCountry } = props;
+	const { selectedCountry, selectedOption } = props;
+	const [timeOption, setTimeOption] = useState(0);
+	const [mapOption, setMapOption] = useState('');
 	const [lineChartData, setLineChartData] = useState([]);
 	const [apiUrl, setApiUrl] = useState('');
 
@@ -20,11 +30,29 @@ function SummaryRightContainer(props) {
 	useEffect(() => {
 		const fetchData = async () => {
 			const { data } = await getData(apiUrl);
-			setLineChartData(data.result);
+			setLineChartData(
+				timeOption === 'All'
+					? data.result
+					: sliceResult(data.result, timeOption)
+			);
 		};
 
 		fetchData();
-	}, [apiUrl]);
+	}, [apiUrl, timeOption]);
+
+	useEffect(() => {
+		switch (selectedOption) {
+			case 'All':
+			case 30:
+			case 7: {
+				setTimeOption(selectedOption);
+				break;
+			}
+			default: {
+				setMapOption(selectedOption);
+			}
+		}
+	}, [selectedOption]);
 
 	return (
 		<>

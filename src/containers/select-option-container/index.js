@@ -1,4 +1,3 @@
-import { Grid } from '@material-ui/core';
 import React from 'react';
 import SelectOptions from './../../components/select';
 
@@ -23,21 +22,26 @@ const listOptionTime = [
 const listOptionChart = [
 	{
 		key: 1,
+		name: 'Line & Map',
+		value: 'line-map',
+	},
+	{
+		key: 2,
 		name: 'Line',
 		value: 'line',
 	},
 	{
-		key: 2,
+		key: 3,
 		name: 'Map',
 		value: 'map',
 	},
 ];
 
-function SelectOptionContainer() {
+function SelectOptionContainer(props) {
 	return (
 		<>
-			<SelectOptions listOption={listOptionChart} />
-			<SelectOptions listOption={listOptionTime} />
+			<SelectOptions {...props} listOption={listOptionChart} />
+			<SelectOptions {...props} listOption={listOptionTime} />
 		</>
 	);
 }

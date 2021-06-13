@@ -21,7 +21,7 @@ function Card(props) {
 				</h2>
 				<div className={styles.card__statistic}>
 					<div>Today: {todayCases} cases</div>
-					<div>? percent</div>
+					<div> population</div>
 				</div>
 				<div
 					className={styles.card__line}

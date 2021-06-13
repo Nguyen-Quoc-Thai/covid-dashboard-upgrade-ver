@@ -4,26 +4,23 @@ import LineChart from './line';
 import Map from './map';
 
 function Chart(props) {
-	const { selectedCountry } = props;
+	const { selectedCountry, selectedOption } = props;
 	const [mapData, setMapData] = useState({});
-	const [mapUrl, setMapUrl] = useState('');
-	console.log({ mapUrl });
+
+	const renderGrid = () => {};
 	useEffect(() => {
 		if (Object.keys(selectedCountry).length) {
-			setMapUrl(
+			import(
 				`@highcharts/map-collection/countries/${selectedCountry.countryInfo.iso2.toLowerCase()}/${selectedCountry.countryInfo.iso2.toLowerCase()}-all.geo.json`
-			);
-		} else {
-			setMapUrl('@highcharts/map-collection/custom/world.geo.json');
-		}
-	}, [selectedCountry]);
-
-	useEffect(() => {
-		mapUrl &&
-			import(mapUrl)
+			)
 				.then((res) => setMapData(res))
 				.catch((error) => console.log(error));
-	}, [mapUrl]);
+		} else {
+			import('@highcharts/map-collection/custom/world.geo.json')
+				.then((res) => setMapData(res))
+				.catch((error) => console.log(error));
+		}
+	}, [selectedCountry]);
 
 	return (
 		<>

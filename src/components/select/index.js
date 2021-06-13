@@ -5,13 +5,14 @@ import Select from '@material-ui/core/Select';
 import styles from './styles.module.scss';
 
 function SelectTime(props) {
-	const { listOption } = props;
+	const { listOption, handleChangeOption } = props;
 	const defaultValue = listOption[0].value;
 
 	const [selected, setSelected] = React.useState(defaultValue);
 
 	const handleChange = (event) => {
 		setSelected(event.target.value);
+		handleChangeOption(event.target.value);
 	};
 
 	const renderListOption = (listOption) => {

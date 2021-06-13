@@ -7,9 +7,14 @@ import { groupCard } from '../../constants/share';
 
 function Home() {
 	const [selectedCountry, setSelectedCountry] = useState({});
+	const [selectedOption, setSelectedOption] = useState('');
 
 	const handleClickCountry = (country) => {
 		setSelectedCountry(country);
+	};
+
+	const handleChangeOption = (sltValue) => {
+		setSelectedOption(sltValue);
 	};
 
 	return (
@@ -31,7 +36,7 @@ function Home() {
 				style={{ marginTop: '1rem' }}
 				justify='flex-end'
 				spacing={2}>
-				<SelectOptionContainer />
+				<SelectOptionContainer handleChangeOption={handleChangeOption} />
 			</Grid>
 
 			<Grid
@@ -44,8 +49,9 @@ function Home() {
 				<SummaryContainer
 					xs={11}
 					groupCard={groupCard}
-					handleClickCountry={handleClickCountry}
 					selectedCountry={selectedCountry}
+					selectedOption={selectedOption}
+					handleClickCountry={handleClickCountry}
 				/>
 			</Grid>
 		</Container>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Country from './item';
 import styles from './styels.module.scss';
-import Spinner from './../../loading';
+import Loading from './../../loading';
 
 const renderListCountry = (listCountry, handleClickCountry) => {
 	return listCountry.map((country, index) => (
@@ -24,7 +24,7 @@ function ListCountry(props) {
 	return (
 		<div className={styles.list}>
 			{loading ? (
-				<Spinner />
+				<Loading />
 			) : (
 				renderListCountry(listCountry, handleClickCountry)
 			)}
