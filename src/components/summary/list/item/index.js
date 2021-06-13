@@ -2,14 +2,14 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 function Country(props) {
-	const { data: ctr } = props;
+	const { data: ctr, handleClickCountry } = props;
 	const { country, countryInfo, data } = ctr;
 
 	const { flag } = countryInfo;
 	const { infections: ifc, deaths: det, recovered: rcv } = data;
 
 	return (
-		<div className={styles.country}>
+		<div className={styles.country} onClick={() => handleClickCountry(ctr)}>
 			<div className={styles.country__left}>
 				<img src={flag} alt='National flag' />
 				<div>

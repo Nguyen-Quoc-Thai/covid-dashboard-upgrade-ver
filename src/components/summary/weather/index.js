@@ -18,7 +18,6 @@ function Weather(props) {
 											.default
 									: ''
 							}
-							alt='Home page'
 							alt='Weather icon'
 						/>
 						<div>{description}</div>

@@ -21,15 +21,24 @@ const destructData = (globalData) => {
 	};
 };
 
-function CardContainer() {
+function CardContainer(props) {
+	const { selectedCountry } = props;
 	const [globalData, setGlobalData] = useState({});
 	const [infections, deads, recovered] = groupCard;
 
-	useEffect(async () => {
-		const apiUrl = 'https://corona.lmao.ninja/v2/all';
-		const { data } = await getData(apiUrl);
-		setGlobalData(destructData(data));
+	useEffect(() => {
+		const fetchData = async () => {
+			const apiUrl = 'https://corona.lmao.ninja/v2/all';
+			const { data } = await getData(apiUrl);
+			setGlobalData(destructData(data));
+		};
+
+		fetchData();
 	}, []);
+
+	useEffect(() => {
+		Object.keys(selectedCountry).length && setGlobalData(selectedCountry.data);
+	}, [selectedCountry]);
 
 	return (
 		<>

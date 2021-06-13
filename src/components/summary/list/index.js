@@ -5,7 +5,11 @@ import Spinner from './../../loading';
 
 const renderListCountry = (listCountry, handleClickCountry) => {
 	return listCountry.map((country, index) => (
-		<Country key={index} data={country} onClick={(e) => {}} />
+		<Country
+			key={index}
+			data={country}
+			handleClickCountry={handleClickCountry}
+		/>
 	));
 };
 

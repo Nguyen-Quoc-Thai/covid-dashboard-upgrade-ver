@@ -6,7 +6,6 @@ import HightChartsMap from 'highcharts/modules/map';
 HightChartsMap(HightCharts);
 
 const destructData = (mapData) => {
-	console.log({ mapData });
 	return mapData.features.map((feature, index) => {
 		return {
 			key: feature.properties['hc-key'],
@@ -67,7 +66,6 @@ function Map(props) {
 	const mapRef = useRef(null);
 
 	useEffect(() => {
-		console.log({ countriesData });
 		if (mapData && Object.keys(mapData).length) {
 			const data = destructData(mapData);
 
@@ -114,4 +112,4 @@ function Map(props) {
 	);
 }
 
-export default React.memo(Map);
+export default Map;

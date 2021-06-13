@@ -1,15 +1,17 @@
 import { Grid, Container } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import CardContainer from './../../containers/card-container';
 import SelectOptionContainer from './../../containers/select-option-container';
 import SummaryContainer from '../../containers/summary-container';
 import { groupCard } from '../../constants/share';
 
-const handleClickCountry = (country) => {
-	console.log(country);
-};
-
 function Home() {
+	const [selectedCountry, setSelectedCountry] = useState({});
+
+	const handleClickCountry = (country) => {
+		setSelectedCountry(country);
+	};
+
 	return (
 		<Container>
 			<Grid
@@ -19,7 +21,7 @@ function Home() {
 				style={{ marginTop: '1rem' }}
 				justify='center'
 				spacing={2}>
-				<CardContainer />
+				<CardContainer selectedCountry={selectedCountry} />
 			</Grid>
 
 			<Grid
@@ -43,6 +45,7 @@ function Home() {
 					xs={11}
 					groupCard={groupCard}
 					handleClickCountry={handleClickCountry}
+					selectedCountry={selectedCountry}
 				/>
 			</Grid>
 		</Container>
