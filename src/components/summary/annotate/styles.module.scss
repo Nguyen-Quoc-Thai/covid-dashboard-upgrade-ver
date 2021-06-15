@@ -1,9 +1,11 @@
 @import './../../../utils/scss/mixins.scss';
 
 .annotate {
-	padding: 8px;
+	padding: 0 0 0.7rem 0;
 	border: 1px solid black;
+	border-top: none;
 	border-radius: 4px 4px 0 0;
+	@include flexbox(center, center);
 
 	&__title {
 		width: 35%;

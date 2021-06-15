@@ -61,6 +61,20 @@ function SummaryLeftContainer(props) {
 	const [location, setLocation] = useState({});
 	const [weather, setWeather] = useState({});
 	const [countries, setCountries] = useState([]);
+	const [filteredCountries, setFilteredCountries] = useState([]);
+
+	console.log({ countries });
+	console.log({ filteredCountries });
+
+	const handleFilterListCountry = (txtFilter) => {
+		if (txtFilter === '') setFilteredCountries(countries);
+		else
+			setFilteredCountries(
+				countries.filter((country) =>
+					country.country.toLowerCase().search(txtFilter.toLowerCase())
+				)
+			);
+	};
 
 	// Get lat, long
 	useEffect(() => {
@@ -74,29 +88,45 @@ function SummaryLeftContainer(props) {
 	}, []);
 
 	// Get weather
-	useEffect(async () => {
-		const { API_KEY } = CONST_VAL;
-		const { lat, long } = location;
+	useEffect(() => {
+		const fetchData = async () => {
+			const { API_KEY } = CONST_VAL;
+			const { lat, long } = location;
 
-		if (lat && long) {
-			const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}`;
-			const { data } = await getData(apiUrl);
-			data && setWeather(weatherDestructData(data));
-		}
+			if (lat && long) {
+				const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}`;
+				const { data } = await getData(apiUrl);
+				data && setWeather(weatherDestructData(data));
+			}
+
+			fetchData();
+		};
 	}, [location]);
 
 	// Get list countries
-	useEffect(async () => {
-		const apiUrl = 'https://corona.lmao.ninja/v2/countries?sort=cases';
-		const { data } = await getData(apiUrl);
-		data && setCountries(countriesDestructData(data));
-		getListCountriesSuccess(data);
+	useEffect(() => {
+		const fetchData = async () => {
+			const apiUrl = 'https://corona.lmao.ninja/v2/countries?sort=cases';
+			const { data } = await getData(apiUrl);
+			if (data) {
+				const destructedData = countriesDestructData(data);
+
+				if (destructedData) {
+					setCountries(destructedData);
+					setFilteredCountries(destructedData);
+				}
+			}
+
+			getListCountriesSuccess(data);
+		};
+
+		fetchData();
 	}, []);
 
 	return (
 		<>
-			<Annotate {...props} />
-			<ListCountry {...props} data={countries} />
+			<Annotate handleFilterListCountry={handleFilterListCountry} {...props} />
+			<ListCountry {...props} data={filteredCountries} />
 			<Weather data={weather} />
 		</>
 	);

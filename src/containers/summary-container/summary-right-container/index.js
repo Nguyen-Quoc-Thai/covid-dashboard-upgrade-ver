@@ -12,7 +12,7 @@ const sliceResult = (objData, timeOption) => {
 
 function SummaryRightContainer(props) {
 	const { selectedCountry, selectedOption } = props;
-	const [timeOption, setTimeOption] = useState(0);
+	const [timeOption, setTimeOption] = useState(999);
 	const [mapOption, setMapOption] = useState('');
 	const [lineChartData, setLineChartData] = useState([]);
 	const [apiUrl, setApiUrl] = useState('');
@@ -31,9 +31,7 @@ function SummaryRightContainer(props) {
 		const fetchData = async () => {
 			const { data } = await getData(apiUrl);
 			setLineChartData(
-				timeOption === 'All'
-					? data.result
-					: sliceResult(data.result, timeOption)
+				timeOption === 999 ? data.result : sliceResult(data.result, timeOption)
 			);
 		};
 
@@ -42,14 +40,13 @@ function SummaryRightContainer(props) {
 
 	useEffect(() => {
 		switch (selectedOption) {
-			case 'All':
+			case 999:
 			case 30:
 			case 7: {
 				setTimeOption(selectedOption);
 				break;
 			}
 			default: {
-				setMapOption(selectedOption);
 			}
 		}
 	}, [selectedOption]);
