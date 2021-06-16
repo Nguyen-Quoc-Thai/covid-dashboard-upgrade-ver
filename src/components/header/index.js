@@ -13,7 +13,7 @@ function Header() {
 					<Link className={styles.header__left__link} to={ROUTES.home}>
 						<img
 							className={styles.header__left__logo}
-							src='https://scontent-sin6-1.xx.fbcdn.net/v/t1.6435-9/94262218_112321463790130_9162205595116240896_n.png?_nc_cat=111&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=COPBsuoF-xEAX9_Y6hw&_nc_ht=scontent-sin6-1.xx&oh=39914eda7756a0ecc60c29d2d7bfbecd&oe=60C9A38D'
+							src={require('./../../resources/logo.png').default}
 							alt='Home page'
 						/>
 						<span className={styles.header__left__title}>Covid dashboard</span>

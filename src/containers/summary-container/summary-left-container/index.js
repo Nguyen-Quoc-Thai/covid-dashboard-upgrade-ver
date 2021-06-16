@@ -96,11 +96,11 @@ function SummaryLeftContainer(props) {
 			if (lat && long) {
 				const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}`;
 				const { data } = await getData(apiUrl);
-				data && setWeather(weatherDestructData(data));
+				Object.keys(data).length && setWeather(weatherDestructData(data));
 			}
-
-			fetchData();
 		};
+
+		fetchData();
 	}, [location]);
 
 	// Get list countries

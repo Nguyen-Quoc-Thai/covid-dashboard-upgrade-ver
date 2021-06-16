@@ -2,7 +2,9 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 function Weather(props) {
-	const { temperature, description, iconId, city, country } = props;
+	const {
+		data: { temperature, description, iconId, city, country },
+	} = props;
 
 	return (
 		<div className={styles.weather}>
