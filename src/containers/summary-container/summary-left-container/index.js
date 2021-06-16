@@ -63,15 +63,13 @@ function SummaryLeftContainer(props) {
 	const [countries, setCountries] = useState([]);
 	const [filteredCountries, setFilteredCountries] = useState([]);
 
-	console.log({ countries });
-	console.log({ filteredCountries });
-
 	const handleFilterListCountry = (txtFilter) => {
 		if (txtFilter === '') setFilteredCountries(countries);
 		else
 			setFilteredCountries(
-				countries.filter((country) =>
-					country.country.toLowerCase().search(txtFilter.toLowerCase())
+				countries.filter(
+					(country) =>
+						country.country.toLowerCase().search(txtFilter.toLowerCase()) >= 0
 				)
 			);
 	};
